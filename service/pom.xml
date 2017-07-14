@@ -2,17 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
     <modelVersion>4.0.0</modelVersion>  
-    <groupId>项目名</groupId>  
-    <artifactId>项目名</artifactId>  
-    <packaging>war</packaging>  
-    <version>1.0.0-BUILD-SNAPSHOT</version>  
-    <!--     本地maven地址 -->  
-    <repositories>  
-        <repository>  
-            <id>central</id>  
-            <url>file://F:\project\m2repository</url>  
-        </repository>  
-    </repositories>  
+    <groupId>architecture</groupId>
+    <artifactId>architecture</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>service</module>
+    </modules>
     <!-- 依赖包集合 -->  
     <dependencies>  
         <!--junit3.0使用编程方式运行,junit4.0使用注解方式运行 -->  
