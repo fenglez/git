@@ -1,0 +1,16 @@
+*.iml
+.idea/
+#IDEA
+**/.idea/
+**/*.iml
+
+#Compile folder
+**/target/
+
+#log output
+**/logs/
+
+#eclips ignore
+.settings
+.project
+*.classpath

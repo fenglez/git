@@ -1,11 +1,9 @@
-/**
- *  模拟考试，时间为120分钟，学生可以再30分钟后交卷，
- * 当学生都交完了 或 时间到者考试结束
- * Created by jiazhangheng on 2017/7/21.
- */
+package aservice;
 
-import java.util.Random;
-import java.util.concurrent.*;
+import java.util.concurrent.DelayQueue;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
 
@@ -29,22 +27,20 @@ public class Student implements Runnable,Delayed {
         this.submitTime = TimeUnit.NANOSECONDS.convert(submitTime, TimeUnit.MILLISECONDS) + System.nanoTime();
     }
 
-    @Override
     public void run() {
         System.out.println(name + " 交卷,用时" + workTime/100 + "分钟");
     }
 
-    @Override
+
     public long getDelay(TimeUnit unit) {
         return unit.convert(submitTime - System.nanoTime(), unit.NANOSECONDS);
     }
 
-    @Override
     public int compareTo(Delayed o) {
         Student that = (Student) o;
         return submitTime > that.submitTime?1:(submitTime < that.submitTime ? -1 : 0);
     }
-    public static class EndExam extends Student{
+    public static class EndExam extends Student {
         private ExecutorService exec;
         public EndExam(int submitTime,ExecutorService exec) {
             super(null,submitTime);
@@ -56,30 +52,31 @@ public class Student implements Runnable,Delayed {
         }
     }
 
-}
-class Teacher implements Runnable{
-    private DelayQueue<Student> students;
-    private ExecutorService exec;
+   public class Teacher implements Runnable {
+        private DelayQueue<Student> students;
+        private ExecutorService exec;
 
-    public Teacher(DelayQueue<Student> students,ExecutorService exec) {
-        super();
-        this.students = students;
-        this.exec = exec;
-    }
+        public Teacher(DelayQueue<Student> students,ExecutorService exec) {
+            super();
+            this.students = students;
+            this.exec = exec;
+        }
 
 
-    @Override
-    public void run() {
-        try {
-            System.out.println("考试开始……");
-            while (!Thread.interrupted()) {
-                students.take().run();
+        public void run() {
+            try {
+                System.out.println("考试开始……");
+                while (!Thread.interrupted()) {
+                    students.take().run();
+                }
+                System.out.println("考试结束……");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            System.out.println("考试结束……");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
         }
 
     }
+
 
 }

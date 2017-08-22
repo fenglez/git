@@ -1,3 +1,5 @@
+package aservice;
+
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -31,7 +33,7 @@ public class Listener {
      * 初始化守护线程
      */
     public void init() {
-        daemonThread = new Thread(() -> execute());
+        daemonThread = new Thread();
         daemonThread.setDaemon(true);
         daemonThread.setName("Task Queue Daemon Thread");
         daemonThread.start();
@@ -62,7 +64,7 @@ public class Listener {
     /**
      * 创建一个最初为空的新 DelayQueue
      */
-    private DelayQueue<Task> t = new DelayQueue<>();
+    private DelayQueue<Task> t = new DelayQueue<Task>();
 
     /**
      * 添加任务，

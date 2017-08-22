@@ -1,9 +1,11 @@
+package aservice;
+
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Created by jiazhangheng on 2017/7/21.
+ * Created by jiazhangheng on 2017/8/22.
  */
 public class Task <T extends Runnable> implements Delayed {
 
@@ -24,13 +26,11 @@ public class Task <T extends Runnable> implements Delayed {
     /**
      * 返回与此对象相关的剩余延迟时间，以给定的时间单位表示
      */
-    @Override
     public long getDelay(TimeUnit unit) {
         return unit.convert(this.time - System.nanoTime(), TimeUnit.NANOSECONDS);
 
     }
 
-    @Override
     public int compareTo(Delayed o) {
         if (o == this) // compare zero ONLY if same object
             return 0;
