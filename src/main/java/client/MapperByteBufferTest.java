@@ -69,4 +69,9 @@ public class MapperByteBufferTest {
         }
     }
 
+    public static void main(String[] arg) {
+        method4();
+        method3();
+    }
+
 }

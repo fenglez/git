@@ -3,6 +3,7 @@
 #IDEA
 **/.idea/
 **/*.iml
+src/*.ppt
 
 #Compile folder
 **/target/
