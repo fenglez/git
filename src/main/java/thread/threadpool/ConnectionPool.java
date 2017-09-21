@@ -1,4 +1,6 @@
-package thread;
+package thread.threadpool;
+
+import thread.threadpool.ConnectionDriver;
 
 import java.sql.Connection;
 import java.util.LinkedList;

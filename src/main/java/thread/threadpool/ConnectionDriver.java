@@ -1,4 +1,4 @@
-package thread;
+package thread.threadpool;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

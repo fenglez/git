@@ -1,4 +1,6 @@
-package thread;
+package thread.threadpool;
+
+import thread.threadpool.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.SQLException;

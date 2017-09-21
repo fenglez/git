@@ -1,7 +1,4 @@
-package thread;
-
-import com.sun.corba.se.spi.orbutil.threadpool.Work;
-import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
+package webserver;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by jiazhangheng on 2017/9/20.
  */
-public class DefaultThreadPool<Job extends  Runnable> extends ThreadPool<Job> {
+public class DefaultThreadPool<Job extends  Runnable> implements ThreadPool<Job> {
     private static final int MAX_WORKER_NUMBERS = 10;
     private static final int DEFAULT_WORKER_NUMBERS = 5;
     private static final int MIN_WORKER_NUMBERS = 1;
@@ -23,6 +20,7 @@ public class DefaultThreadPool<Job extends  Runnable> extends ThreadPool<Job> {
     public DefaultThreadPool() {
         init(DEFAULT_WORKER_NUMBERS);
     }
+
     public DefaultThreadPool(int num) {
         workerNum = num > MAX_WORKER_NUMBERS ? MAX_WORKER_NUMBERS:num<MIN_WORKER_NUMBERS?MIN_WORKER_NUMBERS:num;
         init(DEFAULT_WORKER_NUMBERS);
@@ -35,7 +33,7 @@ public class DefaultThreadPool<Job extends  Runnable> extends ThreadPool<Job> {
             thread.start();
         }
     }
-    public void exeute(Job job) {
+    public void execute(Job job) {
         if(job!= null) {
             synchronized (jobs) {
                 jobs.addLast(job);
