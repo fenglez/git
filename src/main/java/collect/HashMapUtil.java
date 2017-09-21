@@ -122,4 +122,15 @@ public class HashMapUtil<K,V> {
             map.put("a", "b");
         }
     }
+
+
+    public static void main(String[] args) {
+        Map<String, String> map = new ConcurrentHashMap<String, String>(10);
+        int i = 0;
+        while (i < 100) {
+            i++;
+            map.put(String.valueOf(i), String.valueOf(i));
+        }
+        Runtime.getRuntime().gc();
+    }
 }
