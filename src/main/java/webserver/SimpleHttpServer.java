@@ -10,7 +10,6 @@ import java.net.Socket;
  * Created by jiazhangheng on 2017/9/21.
  */
 public class SimpleHttpServer {
-
     static ThreadPool<HttpRequestHandler> threadPool = new DefaultThreadPool<HttpRequestHandler>(1);
     static String basePath;
     static ServerSocket serverSocket;
@@ -42,7 +41,7 @@ public class SimpleHttpServer {
         }
 
         public void run() {
-            String line = null;
+            String line;
             BufferedReader br = null;
             BufferedReader reader = null;
             PrintWriter out = null;
@@ -55,7 +54,7 @@ public class SimpleHttpServer {
                 if (filePath.endsWith("jpg") || filePath.endsWith("ico")) {
                     in = new FileInputStream(filePath);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    int i = 0;
+                    int i;
                     while((i = in.read()) != -1) {
                         baos.write(i);
                     }
