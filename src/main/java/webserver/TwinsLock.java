@@ -11,7 +11,7 @@ import java.util.concurrent.locks.Lock;
 public class TwinsLock implements Lock {
 
     private final Sync sync = new Sync(2);
-    private static final class  Sync extends AbstractQueuedSynchronizer {
+    private static final class Sync extends AbstractQueuedSynchronizer {
         Sync(int count) {
             setState(count);
         }
